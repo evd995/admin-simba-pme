@@ -110,7 +110,7 @@ def get_all_users_messages(activity_id):
 def summarize_responses(activity_id):
     conversations = get_all_users_messages(activity_id)
     
-    SYSTEM_PROMPT = "A continuación verás una serie de conversaciones. Resume brevemente las respuestas de **los usuarios (user)**. No consideres las respuestas de modelo (model). Termina con una sugerencia de tema para una discusión grupal."
+    SYSTEM_PROMPT = "A continuación verás una serie de conversaciones. Resume brevemente las respuestas de **los usuarios (user)**. No consideres las respuestas de modelo (model). Luego, has un punteo de los puntos más relevantes que abordaron los usuarios. Termina con una sugerencia de tema para una discusión grupal."
     USER_PROMPT = f"---- CONVERSACIONES ----\n{conversations}"
 
     response = openai_client.chat.completions.create(
