@@ -99,6 +99,7 @@ def get_all_users_messages(activity_id):
     for user_doc in users_stream:
         activity_db = users_db.document(user_doc.id).collection('activity_threads').document(activity_id)
         thread_id = activity_db.get().get('thread_id')
+        if thread_id is None: continue
         thread_messages = get_messages(thread_id)
         conversations.append(thread_messages)
     return conversations
