@@ -44,7 +44,10 @@ def get_messages(thread_id):
     )
     
     clean_messages = []
+    if len(messages.data) < 2: return clean_messages
     for message in messages.data[1:]:
+        if len(message.content) == 0:
+            continue
         clean_messages.append({
             "role": message.role if message.role == "user" else "model",
             "content": message.content[0].text.value
